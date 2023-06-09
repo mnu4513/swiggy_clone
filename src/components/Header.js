@@ -1,9 +1,10 @@
+import Title from "./Title";
 
 const Header = () => {
 
     return (
         <div>
-            This is Header component.
+            <Title/>
         </div>
     );
 };
