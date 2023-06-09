@@ -3,7 +3,7 @@ import Title from "./Title";
 const Header = () => {
 
     return (
-        <div>
+        <div className="header">
             <Title/>
         </div>
     );
