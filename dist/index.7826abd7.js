@@ -27508,25 +27508,25 @@ var _constants = require("./Constants");
 var _restuarntCard = require("./RestuarntCard");
 var _restuarntCardDefault = parcelHelpers.interopDefault(_restuarntCard);
 var _s = $RefreshSig$();
+function filterData(searchText, restuarants) {
+    const filterData = restuarants.filter((restuarant)=>restuarant.data.name.includes(searchText));
+    return filterData;
+}
 const Body = ()=>{
     _s();
-    const [list, setList] = (0, _react.useState)([]);
+    const [restuarants, setRestuarants] = (0, _react.useState)((0, _constants.restuarantList));
     const [searchText, setSearchText] = (0, _react.useState)("");
-    const [searchList, setSearchList] = (0, _react.useState)(list);
     (0, _react.useEffect)(()=>{
-        restaurantsList();
+        getRestuarants();
     }, [
-        searchList
+        restuarants
     ]);
-    async function restaurantsList() {
-        const josnData = await fetch((0, _constants.swiggyApi));
-        const data = await josnData.json();
-        // console.log(data);
-        // console.log(data.data.cards[2].data.data.cards);
-        setList(data.data.cards[2].data.data.cards);
+    async function getRestuarants() {
+        const data = await fetch((0, _constants.swiggyApi));
+        const json = await data.json();
+        setRestuarants(json?.data?.cards[2]?.data?.data?.cards);
     }
-    function onChangeInput() {}
-    console.log(searchList);
+    console.log(restuarants);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27537,46 +27537,54 @@ const Body = ()=>{
                         className: "search-input",
                         placeholder: "Search",
                         value: searchText,
-                        onChange: (e)=>setSearchText(e.target.value)
+                        onChange: (e)=>{
+                            setSearchText(e.target.value);
+                        }
                     }, void 0, false, {
                         fileName: "src/components/Body.js",
-                        lineNumber: 33,
-                        columnNumber: 17
+                        lineNumber: 40,
+                        columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                         className: "search-btn",
+                        onClick: ()=>{
+                            const data = filterData(searchText, restuarants);
+                        },
                         children: "Search"
                     }, void 0, false, {
                         fileName: "src/components/Body.js",
-                        lineNumber: 34,
-                        columnNumber: 17
+                        lineNumber: 49,
+                        columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/Body.js",
-                lineNumber: 32,
-                columnNumber: 13
+                lineNumber: 39,
+                columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                className: "restuarant-list",
-                children: list?.map((item)=>{
-                    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _restuarntCardDefault.default), {
-                        data: item.data
-                    }, item.data.id, false, {
-                        fileName: "src/components/Body.js",
-                        lineNumber: 39,
-                        columnNumber: 32
-                    }, undefined);
+                className: "resturant-list",
+                children: restuarants?.map((restuarant)=>{
+                    return /*#__PURE__*/ (0, _react.createElement)((0, _restuarntCardDefault.default), {
+                        ...restuarant.data,
+                        key: restuarant.data?.id,
+                        __source: {
+                            fileName: "src/components/Body.js",
+                            lineNumber: 62,
+                            columnNumber: 15
+                        },
+                        __self: undefined
+                    });
                 })
             }, void 0, false, {
                 fileName: "src/components/Body.js",
-                lineNumber: 36,
-                columnNumber: 13
+                lineNumber: 58,
+                columnNumber: 7
             }, undefined)
         ]
     }, void 0, true);
 };
-_s(Body, "YenBV2YSybMEWZ+eZcZnXm1D6Z8=");
+_s(Body, "JbqlMwwj/0AWsgwf4nG6+Dgu7wA=");
 _c = Body;
 exports.default = Body;
 var _c;
@@ -27587,12 +27595,14 @@ $RefreshReg$(_c, "Body");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./Constants":"gE2d9","./RestuarntCard":"9MnMI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"gE2d9":[function(require,module,exports) {
+},{"./Constants":"gE2d9","./RestuarntCard":"9MnMI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","react/jsx-dev-runtime":"iTorj","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq"}],"gE2d9":[function(require,module,exports) {
 const swiggyApi = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.9124336&lng=75.7872709&page_type=DESKTOP_WEB_LISTING";
 const imageApi = "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/";
+const restuarantList = [];
 module.exports = {
     swiggyApi,
-    imageApi
+    imageApi,
+    restuarantList
 };
 
 },{}],"9MnMI":[function(require,module,exports) {
