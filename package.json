@@ -1,14 +1,40 @@
 {
+  "name": "swiggy_clone",
+  "version": "1.0.0",
+  "description": "Swiggy clone application using react [Namaste React Live Course](https://learn.namastedev.com/) conducted by Akshay Saini",
   "scripts": {
-    "start": "parcel index.html"
+    "test": "test",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
   },
-  "devDependencies": {
-    "parcel": "^2.9.1",
-    "process": "^0.11.10"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mnu4513/swiggy_clone"
   },
+  "author": "Harshitha SV",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mnu4513/swiggy_clone/issues"
+  },
+  "homepage": "https://github.com/mnu4513/swiggy_clone",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.2",
+    "firebase": "^9.17.1",
+    "formik": "^2.2.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.12.1"
+    "react-google-button": "^0.7.2",
+    "react-icons": "^4.7.1",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.6.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "dotenv": "^16.0.3",
+    "parcel": "^2.9.3",
+    "postcss": "^8.4.21",
+    "process": "^0.11.10",
+    "tailwindcss": "^3.2.4"
   }
 }
